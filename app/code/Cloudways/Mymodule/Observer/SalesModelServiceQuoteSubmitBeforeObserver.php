@@ -1,17 +1,11 @@
 <?php
-/**
- * Copyright © 2016 MagePal. All rights reserved.
- * See COPYING.txt for license details.
- */
+
 namespace Cloudways\Mymodule\Observer;
 
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
 
-/**
- * Google Analytics module observer
- *
- */
+
 class SalesModelServiceQuoteSubmitBeforeObserver implements ObserverInterface
 {
 
@@ -32,7 +26,7 @@ class SalesModelServiceQuoteSubmitBeforeObserver implements ObserverInterface
         $this->quote = $observer->getQuote();
         $this->order = $observer->getOrder();
 
-        // can not find a equivalent event for sales_convert_quote_item_to_order_item
+        // can not find an equivalent event for sales_convert_quote_item_to_order_item
 
 
         /* @var  \Magento\Sales\Model\Order\Item $orderItem */

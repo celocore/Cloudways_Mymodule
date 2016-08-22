@@ -1,55 +1,30 @@
 <?php
-/**
- * Copyright © 2016 MagePal. All rights reserved.
- * See COPYING.txt for license details.
- */
+
 namespace Cloudways\Mymodule\Observer;
 
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\App\RequestInterface;
 
-/**
- * Google Analytics module observer
- *
- */
 class CheckoutCartProductAddAfterObserver implements ObserverInterface
 {
-    /**
-     * @var \Magento\Framework\View\LayoutInterface
-     */
-    protected $_layout;
-
-    /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
-    protected $_storeManager;
-
 
     protected $_request;
 
     /**
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\View\LayoutInterface $layout
+     * @param RequestInterface $request
      */
-    public function __construct(
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\View\LayoutInterface $layout,
-        \Magento\Framework\App\RequestInterface $request
-    ) {
-        $this->_layout = $layout;
-        $this->_storeManager = $storeManager;
-        $this->_request = $request;
+    public function __construct(RequestInterface $request){
+            $this->_request = $request;
     }
 
     /**
-     * Add order information into GA block to render on checkout success pages
-     *
      * @param EventObserver $observer
      * @return void
      */
     public function execute(EventObserver $observer)
     {
-        /* @var Magento\Quote\Model\Quote\Item $item */
+        /* @var \Magento\Quote\Model\Quote\Item $item */
         $item = $observer->getQuoteItem();
 
         $additionalOptions = array();
@@ -85,7 +60,11 @@ class CheckoutCartProductAddAfterObserver implements ObserverInterface
 
         // Edit Cart - May need to remove option and readd them
         // Pre-fill remarks on product edit pages
-        // Check for comparability with custom option
+
+
+        /* Issues */
+
+        // Create new cart item with identical option values will add a new line item, instead of increment previous item qty
 
     }
 }
